@@ -1,0 +1,82 @@
+[
+	{
+		"title": "Lapicera",
+		"description": "la mejor lapicera",
+		"price": 2,
+		"code": "24a3dfs",
+		"stock": 1,
+		"status": true,
+		"category": "libreria",
+		"id": 1
+	},
+	{
+		"title": "Lapicera 2",
+		"description": "la segunda mejor lapicera",
+		"price": 2,
+		"code": "N24a3dfs",
+		"stock": 1,
+		"status": true,
+		"category": "libreria",
+		"id": 2
+	},
+	{
+		"title": "Lapicera 3",
+		"description": "la tercera mejor lapicera",
+		"price": 2,
+		"code": "N24a3df1s",
+		"stock": 1,
+		"status": true,
+		"category": "libreria",
+		"id": 3
+	},
+	{
+		"title": "Lapicera 4",
+		"description": "la tercera mejor lapicera",
+		"price": 2,
+		"code": "N24a3df132s",
+		"stock": 1,
+		"status": true,
+		"category": "libreria",
+		"id": 4
+	},
+	{
+		"title": "Lapicera 5",
+		"description": "la quinta mejor lapicera",
+		"price": 2,
+		"code": "N24a3df1w32s",
+		"stock": 1,
+		"status": true,
+		"category": "libreria",
+		"id": 5
+	},
+	{
+		"title": "Lapicera 6",
+		"description": "la 6 mejor lapicera",
+		"price": 2,
+		"code": "N24a3dw32s",
+		"stock": 1,
+		"status": true,
+		"category": "libreria",
+		"id": 6
+	},
+	{
+		"title": "Lapicera 7",
+		"description": "la 7 mejor lapicera",
+		"price": 2,
+		"code": "N24aw32s",
+		"stock": 1,
+		"status": true,
+		"category": "libreria",
+		"id": 7
+	},
+	{
+		"title": "Lapicera 8",
+		"description": "la 8 mejor lapicera",
+		"price": 2,
+		"code": "N24aw2s",
+		"stock": 1,
+		"status": true,
+		"category": "libreria",
+		"id": 8
+	}
+]

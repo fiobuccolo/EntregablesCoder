@@ -21,7 +21,7 @@ export class ProductManager  {
     async saveFile(data){
         try {
             await promises.writeFile(this.fileName,JSON.stringify(data,null, '\t'))
-            return true
+            return data
         } catch (error) {
             console.log(error)
             return false;
@@ -33,21 +33,36 @@ export class ProductManager  {
         return this.products
     }
 
-    async addProduct(product){
-        if(!product){
-            return console.log("El product esta vacio");
-        }
-        console.log(product);
-        
+    async addProduct(newProduct){
+        try{
+            if(!newProduct){
+                return console.log("El product esta vacio");
+              }
+          
+            // esta validacion del codigo existente
+            const productExists = this.products.some(prod => prod.code === newProduct.code);
+          
+            if(productExists){
+                  console.log("Ya existe el codigo de producto")
+                  return "Ya existe el codigo de producto"
+              }
 
-        const response = await this.saveFile(this.products)
-        if(response){
-            console.log("Producto agregado al archivo")
-            return product
-        }else{
-            console.log("Hubo un error");
-        }
-    } 
+             //const product = new Product(title,description,price,thumbnail,code,stock,status,category)
+             newProduct.id = this.products.length > 0 ? this.products[this.products.length - 1].id + 1 : 1;
+              this.products.push(newProduct)
+
+              const response =  await this.saveFile(this.products)
+              console.log(this.products)
+              if(response){
+                    return ({message: `product created`,product: newProduct})
+                }else{
+                    console.log("Hubo un error");
+                
+            }
+          }  catch(error){  console.log(`hubo un error: ${error}`);}
+                }
+      
+
 
     getProductById(productId){
         const product = this.products.find((product) => product.id === productId);
@@ -76,11 +91,9 @@ export class ProductManager  {
                 console.log(`El producto con ID ${id} no existe`)
                 return "No existe el product"
         } 
-        
         catch (error) {
             console.log(error);
         }
-
      }
 
      async deleteProduct(productId){
@@ -114,7 +127,6 @@ export class ProductManager  {
 
 export class Product{
     constructor(title,description,price,thumbail,code, stock,status,category){
-      
         this.title = title, //string
         this.description = description,//string
         this.price = price, //number

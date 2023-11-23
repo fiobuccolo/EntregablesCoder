@@ -41,34 +41,27 @@ productsRouter.get("/", async (req,res)=>{
 
 
  productsRouter.post("/",async (req,res)=>{
-    try{ 
-        // ??? ->> estas validaciones van en el post o en el metodo add??
+        try{ 
+            const {title,description,price,thumbnail,code,stock,status,category} = req.body
+            console.log("validacion de inputs")
+            if(!title || !description || !price || !category || !stock || !code) {
+                return res.json({
+                    message:  "missing data"
+                })
+               
+                  }
+            console.log("creación de product de inputs")
+            const newProduct = new Product(title,description,price,thumbnail,code,stock,status,category)
+            console.log(newProduct)
+            const response = await products.addProduct(newProduct);
+            console.log("hola")
+            return res.json({
+                message: response
+            })
+        }  catch(error){ throw new Error (error)}
+ }) 
 
-        const {title,description,price,thumbnail,code,stock,status,category} = req.body
-        
-        console.log(code)
-        if(!code ||!title ||!description ||!price ||!code ||!stock ||!category){
-            console.log("Datos incompletos")
-            return res.json({ message:"Datos incompletos"})
-           }
-           console.log("validacion si el prod existe")
-        const productExists = this.products.some(prod => prod.code === code);
-        if(productExists){
-              console.log("Ya existe el codigo de producto")
-              return "Ya existe el codigo de producto"
-          }
-        const product = new Product(title,description,price,thumbnail,code,stock,status,category)
-        product.id = this.products.length > 0 ? this.products[this.products.length - 1].id + 1 : 1;
-        this.products.push(product)
 
-        const Response =  await (products.addProduct(product))
-        return res.status(201).json({
-            message: "product created",
-            product: Response
-        })
-        
-    }  catch(error){  console.log(`hubo un error: ${error}`);}
-})
 
     //----
         
