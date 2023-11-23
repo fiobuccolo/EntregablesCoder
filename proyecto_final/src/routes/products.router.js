@@ -9,11 +9,11 @@ const productsRouter = Router();
 productsRouter.get("/", async (req,res)=>{ 
     try {
          console.log(req.params); // :
-         console.log(req.query); // ?key=valor&key2=valor
+        console.log(req.query); // ?key=valor&key2=valor
          const prods = await products.getProducts()
-         console.log(prods)
-         const {limit} = req.query
-         console.log(limit);
+        //console.log(prods)
+         const { limit } = req.query
+         console.log(`limit: ${limit}`);
          if(!limit){
              res.json({products:prods})
          }else{
@@ -45,11 +45,8 @@ productsRouter.get("/", async (req,res)=>{
             const {title,description,price,thumbnail,code,stock,status,category} = req.body
             console.log("validacion de inputs")
             if(!title || !description || !price || !category || !stock || !code) {
-                return res.json({
-                    message:  "missing data"
-                })
-               
-                  }
+                return res.json({message:  "missing data" })
+             }
             console.log("creación de product de inputs")
             const newProduct = new Product(title,description,price,thumbnail,code,stock,status,category)
             console.log(newProduct)
