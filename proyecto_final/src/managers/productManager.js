@@ -21,7 +21,7 @@ export class ProductManager  {
     async saveFile(data){
         try {
             await promises.writeFile(this.fileName,JSON.stringify(data,null, '\t'))
-            return data
+            return true
         } catch (error) {
             console.log(error)
             return false;
