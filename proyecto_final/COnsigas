@@ -1,0 +1,42 @@
+/*
+Desarrolar el servidor basado en Node.js y express
+escuche en puerto 8080
+
+rutas:
+    1- /products
+        a- api/products 
+            1- get que listo todos los productos - con limit
+            2- get por id 
+            3- post: agrega producto a carrito:
+                Obligatorios:
+                    - id(number/String)
+                        --> no se manda en el body se autogenera
+                        --> validacion de unico
+                    -title:string
+                    -description:string
+                    -code:string
+                    -price:number
+                    -status:boolean | true
+                    -stock:number
+                    -category:string
+                Opcional:
+                    -thumbnails: array de strings con rutas donde estan almacendas las imagenes
+            4- Put/:id - debera tomar un prodcuto y actualizarlo por los campos enviados desde body. Sin eliminar/actualizar el ID
+            5- delete/:id
+
+    2- /carts
+         a- api/carts:
+            1-post: crear un nuevo carrito 
+                - id
+                -products --array con products 
+            2- get/cid - listar los productos dentro del carrito
+            3-post/:cid/product/:pid -- agregar el producto al carrito
+                - solo el id
+                - quantity
+
+Persistencia: 
+    archivos:
+        products.json
+        carts.json
+
+*/
