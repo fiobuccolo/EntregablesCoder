@@ -40,6 +40,9 @@ productsRouter.get("/", async (req,res)=>{
  })
 
 
+ //POST
+    // TODO: 1. Validaciones de tipo de dato - Esto se hace con typeOf, o en la class se define el tipo de dato permitido? 
+        
  productsRouter.post("/",async (req,res)=>{
         try{ 
             const {title,description,price,thumbnail,code,stock,status,category} = req.body
@@ -58,6 +61,39 @@ productsRouter.get("/", async (req,res)=>{
         }  catch(error){ throw new Error (error)}
  }) 
 
+ //UPDATE
+    // TODO: 1. validaciones de que no repitan un codigo de otro producto
+        //   2 Validaciones de tipo de dato
+        //   3. Validar que en el body no me mande un id distinto del param. Que pasaria ahi?
+
+ productsRouter.put("/:pid",async (req,res)=>{
+    try {
+        console.log(req.body);
+        const {pid} = req.params
+        const {product} = req.body
+        console.log((product));
+        console.log(pid)
+        const prod = await (products.updateProduct(parseInt(pid),product))
+        res.json({product:prod})
+    } catch (error) {
+        console.log(`hubo un error: ${error}`);
+    }
+})
+
+ // DELETE
+ productsRouter.delete("/:pid",async (req,res)=>{
+    try {
+        console.log(req.params);
+        const {pid} = req.params
+        console.log(pid)
+        const prod = await (products.deleteProduct(parseInt(pid)))
+        res.json({product:prod})
+
+    } catch (error) {
+        console.log(`hubo un error: ${error}`);
+    }
+ 
+})
 
 
     //----

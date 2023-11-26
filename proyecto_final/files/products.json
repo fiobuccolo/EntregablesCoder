@@ -20,7 +20,7 @@
 		"id": 2
 	},
 	{
-		"title": "Lapicera 3",
+		"title": "Lapicera 3 con 3 upadate",
 		"description": "la tercera mejor lapicera",
 		"price": 2,
 		"code": "N24a3df1s",
@@ -28,16 +28,6 @@
 		"status": true,
 		"category": "libreria",
 		"id": 3
-	},
-	{
-		"title": "Lapicera 4",
-		"description": "la tercera mejor lapicera",
-		"price": 2,
-		"code": "N24a3df132s",
-		"stock": 1,
-		"status": true,
-		"category": "libreria",
-		"id": 4
 	},
 	{
 		"title": "Lapicera 5",

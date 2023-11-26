@@ -5,8 +5,8 @@ escuche en puerto 8080
 rutas:
     1- /products
         a- api/products 
-            1- get que listo todos los productos - con limit
-            2- get por id 
+            1- get que listo todos los productos - con limit --ok
+            2- get por id                                    --ok
             3- post: agrega producto a carrito:
                 Obligatorios:
                     - id(number/String)

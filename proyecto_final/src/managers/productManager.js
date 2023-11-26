@@ -73,12 +73,12 @@ export class ProductManager  {
         return product
      }
 
-     async updateProduct(productId,product){
+     async updateProduct(pid,product){
         try{
             const indice = this.products.findIndex(product => product.id === productId);
             console.log(indice)
             if (indice != -1) {
-                const { id, ...rest } = product;
+                const { pid, ...rest } = product;
                 this.products[indice] = { ...this.products[indice], ...rest };
                 const response = await this.saveFile(this.products)
                 if(response){
