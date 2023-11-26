@@ -1,13 +1,17 @@
 
 import { existsSync, readFileSync, promises } from "fs"
+import { ProductManager } from "./productManager.js"
+const products = new ProductManager('files/productos.json');
+
 export class CartManager  {
 
     constructor (fileName){
-        this.fileName= fileName
+        this.fileName= fileName;
         if(existsSync(fileName)){
             try {
                 let carts = readFileSync(fileName,"utf-8")
                 this.carts = JSON.parse(carts)
+               
             } catch (error) {
                 this.carts = [] 
             }
@@ -29,21 +33,19 @@ export class CartManager  {
     }
      
 
-    getCarts(){
-        return this.products
+     getCarts(){
+        return this.carts
     }
 
-    async addCart(){
-        try{
-            
-            const newCart = new Cart()
-             newCart.id = this.carts.length > 0 ? this.carts[this.carts.length - 1].id + 1 : 1;
-            this.carts.push(newCart)
-
+    async addCart(cart){
+        try{  
+            cart = new Cart()
+            cart.id = this.carts.length > 0 ? this.carts[this.carts.length - 1].id + 1 : 1;
+            this.carts.push(cart)
               const response =  await this.saveFile(this.carts)
               console.log(this.carts)
               if(response){
-                    return ({message: `cart created`,cart: newCart})
+                    return ({message: `cart created`, carts: this.carts})
                 }else{
                     console.log("Hubo un error");
                 
@@ -63,11 +65,15 @@ export class CartManager  {
         return cart
      }
 
-     async updateCart(cartId,productId,quantity){
+     // TODO: validar todo  
+     async updateCart(cartId,productId){
         try{
-            // VALIDAR QUE TANTO CART COMO PRODUCTO EXISTAS
+            // VALIDAR QUE TANTO CART COMO PRODUCTO EXISTAS:
             const indiceCart = this.carts.findIndex(cart => cart.id === cartId);
+            console.log(indiceCart);
+            console.log(this.products);
             const indiceProduct = this.products.findIndex(p => p.id === productId);
+            console.log(indiceProduct);
             if(indiceCart < 0 ||indiceProduct < 0 ){return "El id de producto o de cart no existe"}
 
              // TO DO logica de si el producto ya esta en el carrito para saber si lo agrego o le sumo cantidad
@@ -93,21 +99,22 @@ export class CartManager  {
      async deleteCart(cartId){
         try {
             const indice = this.carts.findIndex(cart => cart.id === cartId);
-            if (indice != -1) {
-            
-                       this.carts.splice(indice,1)
-
-                const response = await this.saveFile(this.carts)
+            console.log(`indice: ${indice}`);
+            if(indice>0) {
+                console.log(("entre al if"));
+                    this.carts.splice(indice,1)
+                    const response = await this.saveFile(this.carts)
                 if(response){
                     console.log("Producto eliminado")
                     return ("Producto eliminado")
-
+                }else{
+                    console.log("Hubo un error");
                 }
-             else
-                console.log(`El carts con ID ${id} no existe`)
-                return "No existe el product"
-        } 
-
+            } 
+             else{
+                console.log(("entre al else"));
+                console.log(`El carts con ID ${cartId} no existe`)
+                return "No existe el cart"}
         } catch (error) {
             console.log("Hubo un error");
             return error
@@ -120,10 +127,11 @@ export class CartManager  {
 
 // TODO la class del cart
 export class Cart{
-    constructor(){
+    constructor(products){
         
+        this.products= []
     }
 }
 
-   
+
 

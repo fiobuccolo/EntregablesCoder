@@ -99,21 +99,17 @@ export class ProductManager  {
      async deleteProduct(productId){
         try {
             const indice = this.products.findIndex(product => product.id === productId);
-            if (indice != -1) {
-            
+            if (indice>0) {
                        this.products.splice(indice,1)
-
-                const response = await this.saveFile(this.products)
-                if(response){
-                    console.log("Producto eliminado")
-                    return ("Producto eliminado")
-
-                }
+                      const response = await this.saveFile(this.products)
+                        if(response){
+                            console.log("Producto eliminado")
+                            return ("Producto eliminado")
+                        }else{console.log("Hubo un error");}
+                    } 
              else
-                console.log(`El producto con ID ${id} no existe`)
+                console.log(`El producto con ID ${productId} no existe`)
                 return "No existe el product"
-        } 
-
         } catch (error) {
             console.log("Hubo un error");
             return error
