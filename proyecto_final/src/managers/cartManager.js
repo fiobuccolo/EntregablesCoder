@@ -53,11 +53,12 @@ export class CartManager  {
       
 
 
-    getCartById(cartId){
-        const cart = this.carts.find((cart) => cart.id === cartId);
+    getCartById(cid){
+        console.log("estoy en el get cart by id");
+        const cart = this.carts.find((cart) => cart.id === cid);
         if(!cart){
-            console.log(`El producto con ID ${cartId} no existe`)
-            return "No existe el product"
+            console.log(`El cart con ID ${cid} no existe`)
+            return "No existe el cart"
         }
         return cart
      }
