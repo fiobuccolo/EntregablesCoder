@@ -1,0 +1,12 @@
+[
+	{
+		"id": 1,
+		"title": "la mejor lapicera",
+		"description": 2,
+		"price": "",
+		"thumbail": "243dfs",
+		"code": 1,
+		"stock": true,
+		"status": "libreria"
+	}
+]
