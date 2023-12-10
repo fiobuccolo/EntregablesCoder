@@ -1,13 +1,14 @@
 <div>
     
     <div>
-        <form action="/api/realtimeproducts" method="post">
-            <input type="text" name="title" placeholder="title">
-             <input type="description" name="description" placeholder="description">>
-             <input type="category" name="category" id="category" placeholder="category">>
-             <input type="stock" name="stock" id="stock" placeholder="stock">>
-             <input type="code" name="code" id="code" placeholder="code">>
-            <input type="number" name="price" id="price" placeholder="price">
+        {{!-- <form action="/api/realtimeproducts" method="post"> --}}
+         <form>
+            <input type="text" name="title" placeholder="title" id="title">
+             <input type="description" name="description" placeholder="description" id="description">
+             <input type="category" name="category" id="category" placeholder="category" id="category">
+             <input type="stock" name="stock" id="stock" placeholder="stock" id="stock">
+             <input type="code" name="code" id="code" placeholder="code" id="code">
+            <input type="number" name="price" id="price" placeholder="price" id="price">
             <input type="submit" name="Send" id="button">
         </form>
      </div>
@@ -31,4 +32,8 @@
     <script src="/js/realTimeProducts.js"></script>
      
 </div>
+
+
+
+
 

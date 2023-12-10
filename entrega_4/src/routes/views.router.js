@@ -17,11 +17,9 @@ viewsRouter.get("/products", async(req,res)=>{
     })
 })
 //products in real time
-viewsRouter.get("/realtimeproducts",async (req,res)=>{
-    const prods = await products.getProducts()
+viewsRouter.get("/realtimeproducts", (req,res)=>{
     res.render("realTimeProducts",{
         title:"Real time products",
-        prods,
         fileCss:"products.css"
     })
 })

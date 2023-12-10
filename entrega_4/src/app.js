@@ -47,24 +47,25 @@ app.use("/api/carts",cartsRouter)
 app.use("/api/products",productsRouter)
 
 // Socket communication
-
+const productos = []
 socketServer.on("connection",(socketClient)=>{
     console .log("Nuevo cliente conectado");
     // recepcion del emit 1 
     socketClient.on("message",(data)=>{
      console.log(data);
     })
+
+     // mensajes del chat
+   socketClient.on("products_message",(data)=>{
+    console.log(data)
+    productos.push(data)
+    console.log(productos);
+    console.log("antes del emit");
+    socketClient.emit("products_list",productos)
+   })
+   socketClient.emit("products_list",productos)
  
-    // recepcion del emit 2- agregar producto:
-    /*
-    socketClient.on("products_message",(data)=>{
-    console.log(data);
-    products.push(data)
-     console.log("antes del emi DE RECEPCION DEL EMIT 2 APP");
-     socketClient.emit("products_list",products)
-    })
-    socketClient.emit("products_list",products)
- */
+   
  })
  
 
